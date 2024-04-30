@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My slide view</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0"> 
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="clock">
+       <span id="hrs"></span>
+       <span >:</span>
+       <span id="mins"></span>
+       <span >:</span>
+       <span id="secs"></span>
+        </div>
+        <div class="gallery-wrap">
+            <img src="images/back.png" id="back-btn">
+        
+        <div class="gallery">
+            <div>
+            <img src="images/image-1.png"/>
+            <img src="images/image-2.png"/>
+            <img src="images/image-3.png"/>
+            </div>
+            <div>
+            <img src="images/image-4.png"/>
+            <img src="images/image-5.png"/>
+            <img src="images/image-6.png"/>
+            </div>
+        </div>
+        <img src="images/next.png" id="next-btn">
+    </div>
+    
+<script>
+    let hrs=document.getElementById("hrs");
+    let mins=document.getElementById("mins");
+    let secs=document.getElementById("secs");
+    setInterval(()=>{
+        let date=new Date();
+        console.log(date);
+        hrs.innerHTML = (date.getHours()<10?"0":"")+date.getHours();        
+        mins.innerHTML=(date.getMinutes()<10?"0":"")+date.getMinutes();
+        secs.innerHTML=(date.getSeconds()<10?"0":"")+date.getSeconds();
+      
+},1000);
+
+    let scrollContainer=document.querySelector(".gallery");
+    let nextBtn=document.getElementById("next-btn");
+    let backBtn=document.getElementById("back-btn");
+    scrollContainer.addEventListener("wheel",(evt)=>{
+        evt.preventDefault();
+        scrollContainer.scrollLeft+=evt.deltaY;
+        scrollContainer.style.scrollBehavior="auto";
+    });
+    nextBtn.addEventListener("click",()=>{
+        scrollContainer.scrollLeft+=900;
+        scrollContainer.style.scrollBehavior="smooth";
+
+    });
+    backBtn.addEventListener("click",()=>{
+        scrollContainer.scrollLeft-=900;
+        scrollContainer.style.scrollBehavior="smooth";
+
+    })
+</script>
+    </body>
+</html>
